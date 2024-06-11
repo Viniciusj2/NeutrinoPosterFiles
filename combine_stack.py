@@ -4,7 +4,7 @@ import ROOT
 file1_name = "10_Scaled_CRY_upto150MeV.root"
 file2_name = "10_Scaled_Marley_upto150MeV.root"
 hist_names = ["energy_hist", "integral_hist"]
-output_file_name = "10_upto150MeV_cosmicvmarley_comp.root"
+output_file_name = "10_upto150MeV_cosmicvsmarley_comp.root"
 
 # Open the ROOT files
 file1 = ROOT.TFile.Open(file1_name)
