@@ -46,13 +46,13 @@ t0_us = t0_ns / 1000.0
 # Initialize  
 waveform_integrals = []
 peak_info = {}
-pulse_counts = []  # List to track the number of pulses in each entry
+pulse_counts = []  
 
 energy_hist = rt.TH1D("energy_hist", "Total Energy Deposition in Peak Windows;Energy (MeV);Entries", 600, 0, 3000)
 integral_hist = rt.TH1D("integral_hist", "Integral Values of Waveforms;Integral Waveform Value;Entries", 600, 0, 3000)
 
 # Process waveform data to detect peaks
-for ientry in range(500):  # nentries
+for ientry in range(nentries):  # nentries
     if ientry % 100 == 0:
         print(f"Processing entry {ientry}/{nentries}")
 
@@ -74,7 +74,7 @@ for ientry in range(500):  # nentries
 
     # Initialize a list to track the indices of identified peaks
     identified_peaks = []
-    peak_ranges = []  # List to store the start and end indices of detected peaks
+    peak_ranges = []  
 
     # Process the summed waveform
     max_value = np.max(summed_waveform)
@@ -93,8 +93,8 @@ for ientry in range(500):  # nentries
                 peak_ranges.append((start_index, end_index))
 
                 # Convert the sample indices to time in microseconds and apply the offset
-                start_time_us = start_index * time_per_sample_us + 1   #t0_us
-                end_time_us = end_index * time_per_sample_us + 1  #t0_us
+                start_time_us = start_index * time_per_sample_us + t0_us
+                end_time_us = end_index * time_per_sample_us + t0_us
 
                 # Sum the value of the waveform inside the time window
                 integral_value = np.sum(summed_waveform[start_index:end_index + 1])
@@ -123,7 +123,7 @@ for ientry in range(500):  # nentries
 
 energy_integrals = []
 
-for ientry in range(500):  # edepentries
+for ientry in range(edepentries):  # edepentries
     #if ientry % 100 == 0:
         #print(f"Processing EDep entry {ientry}/{edepentries}")
 
@@ -167,12 +167,10 @@ print(f"Number of pulses: {num_pulses}")
 # Calculate the mean number of pulses
 mean_pulses = np.mean(pulse_counts)
 print(f"Mean number of pulses per entry: {mean_pulses}")
-
-# Calculate the probabilities of having 0 or 1 pulse in an entry
 num_0_pulses = pulse_counts.count(0) 
 num_1_pulse = pulse_counts.count(1) 
-print(f"Probability of 0 pulses in an entry: {num_0_pulses}")
-print(f"Probability of 1 pulse in an entry: {num_1_pulse}")
+print(f"Num of Entries with 0 Pulses: {num_0_pulses}")
+print(f"Num of Entries with 1 Pulse: {num_1_pulse}")
 
 # Print the peak information dictionary
 for key, value in peak_info.items():
