@@ -1,10 +1,10 @@
 import ROOT
 
 # File and histogram names
-file1_name = "10_Scaled_CRY_upto200MeV.root"
-file2_name = "10_Scaled_Marley_upto200MeV.root"
+file1_name = "10_Scaled_CRY_upto150MeV.root"
+file2_name = "10_Scaled_Marley_upto150MeV.root"
 hist_names = ["energy_hist", "integral_hist"]
-output_file_name = "10_upto200MeV_cosmicvmarley_comp.root"
+output_file_name = "10_upto150MeV_cosmicvmarley_comp.root"
 
 # Open the ROOT files
 file1 = ROOT.TFile.Open(file1_name)
@@ -44,9 +44,9 @@ for hist_name in hist_names:
     # Write the stack to the output file
     stack.Write()
     
-    # Optionally, draw the stack and save as image/PDF
-    canvas = ROOT.TCanvas(hist_name + "_canvas", f"Stacked {hist_name}", 800, 600)
-    stack.Draw("Hist")  # Use "HIST" to draw the histograms as line plots
+    # Draw the stack and save as image/PDF
+    #canvas = ROOT.TCanvas(hist_name + "_canvas", f"Stacked {hist_name}", 800, 600)
+    #stack.Draw("Hist")  # Use "HIST" to draw the histograms as line plots
     
 
     # Add a legend
@@ -57,7 +57,7 @@ for hist_name in hist_names:
 
     # Save the canvas
     #canvas.SaveAs(hist_name + "_stacked.png")
-    canvas.SaveAs(hist_name + "_stacked.pdf")
+    #canvas.SaveAs(hist_name + "_stacked.pdf")
 
 # Close the output file
 output_file.Close()
