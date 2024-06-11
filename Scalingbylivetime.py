@@ -17,8 +17,8 @@ if not energy_hist or not integral_hist:
     input_file.Close()
     sys.exit(1)
 
-# Scale the histograms by dividing the y-axis by 135 for Muons and 34.03 for Neutrinos
-scale_factor = 135
+# Scale the histograms by dividing the y-axis by livetime
+scale_factor = 30.04
 energy_hist.Scale(1.0 / scale_factor)
 integral_hist.Scale(1.0 / scale_factor)
 
